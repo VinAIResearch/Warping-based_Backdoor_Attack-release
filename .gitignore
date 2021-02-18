@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Intrinsic folders and files
+checkpoints/
+scripts/
