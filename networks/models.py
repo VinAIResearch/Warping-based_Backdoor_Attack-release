@@ -77,7 +77,7 @@ class Denormalizer:
             x = self.denormalizer(x)
         return x
 
-        
+
 # ---------------------------- Classifiers ----------------------------#
 class MNISTBlock(nn.Module):
     def __init__(self, in_planes, planes, stride=1):

@@ -22,13 +22,13 @@ def get_arguments():
 
     parser.add_argument("--target_label", type=int, default=0)
     parser.add_argument("--pc", type=float, default=0.1)
-    parser.add_argument("--cross_ratio", type=float, default=2) # rho_a = pc, rho_n = pc * cross_ratio
+    parser.add_argument("--cross_ratio", type=float, default=2)  # rho_a = pc, rho_n = pc * cross_ratio
 
     parser.add_argument("--random_rotation", type=int, default=10)
     parser.add_argument("--random_crop", type=int, default=5)
 
     parser.add_argument("--s", type=float, default=0.5)
-    parser.add_argument("--k", type=int, default=4) 
+    parser.add_argument("--k", type=int, default=4)
     parser.add_argument(
         "--grid-rescale", type=float, default=1
     )  # scale grid values to avoid pixel values going out of [-1, 1]. For example, grid-rescale = 0.98

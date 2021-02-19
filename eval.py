@@ -1,4 +1,3 @@
-
 import json
 import os
 import shutil
@@ -37,7 +36,7 @@ def get_model(opt):
     schedulerC = torch.optim.lr_scheduler.MultiStepLR(optimizerC, opt.schedulerC_milestones, opt.schedulerC_lambda)
 
     return netC, optimizerC, schedulerC
-    
+
 
 def eval(
     netC,
@@ -96,17 +95,12 @@ def eval(
 
                 acc_cross = total_cross_correct * 100.0 / total_sample
 
-                info_string = (
-                    "Clean Acc: {:.4f} | Bd Acc: {:.4f} | Cross: {:.4f}".format(
-                        acc_clean, acc_bd, acc_cross
-                    )
-                )
+                info_string = "Clean Acc: {:.4f} | Bd Acc: {:.4f} | Cross: {:.4f}".format(acc_clean, acc_bd, acc_cross)
             else:
                 info_string = "Clean Acc: {:.4f} - Best: {:.4f} | Bd Acc: {:.4f} - Best: {:.4f}".format(
                     acc_clean, best_clean_acc, acc_bd, best_bd_acc
                 )
             progress_bar(batch_idx, len(test_dl), info_string)
-
 
 
 def main():

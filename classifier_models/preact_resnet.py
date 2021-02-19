@@ -10,8 +10,7 @@ import torch.nn.functional as F
 
 
 class PreActBlock(nn.Module):
-    """Pre-activation version of the BasicBlock."""
-
+    '''Pre-activation version of the BasicBlock.'''
     expansion = 1
 
     def __init__(self, in_planes, planes, stride=1):
@@ -20,18 +19,22 @@ class PreActBlock(nn.Module):
         self.conv1 = nn.Conv2d(in_planes, planes, kernel_size=3, stride=stride, padding=1, bias=False)
         self.bn2 = nn.BatchNorm2d(planes)
         self.conv2 = nn.Conv2d(planes, planes, kernel_size=3, stride=1, padding=1, bias=False)
+        self.ind = None
 
-        if stride != 1 or in_planes != self.expansion * planes:
+        if stride != 1 or in_planes != self.expansion*planes:
             self.shortcut = nn.Sequential(
-                nn.Conv2d(in_planes, self.expansion * planes, kernel_size=1, stride=stride, bias=False)
+                nn.Conv2d(in_planes, self.expansion*planes, kernel_size=1, stride=stride, bias=False)
             )
 
     def forward(self, x):
         out = F.relu(self.bn1(x))
-        shortcut = self.shortcut(out) if hasattr(self, "shortcut") else x
+        shortcut = self.shortcut(out) if hasattr(self, 'shortcut') else x
         out = self.conv1(out)
         out = self.conv2(F.relu(self.bn2(out)))
-        out += shortcut
+        if self.ind is not None:
+           out += shortcut[:,self.ind,:,:]
+        else:
+           out += shortcut
         return out
 
 

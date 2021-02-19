@@ -135,14 +135,12 @@ def train(netC, optimizerC, schedulerC, train_dl, noise_grid, identity_grid, tf_
                 "CE Loss: {:.4f} | Clean Acc: {:.4f} | Bd Acc: {:.4f} ".format(avg_loss_ce, avg_acc_clean, avg_acc_bd),
             )
 
-       
         # Save image for debugging
-        if(not batch_idx % 50):
-            if(not os.path.exists(opt.temps)):
+        if not batch_idx % 50:
+            if not os.path.exists(opt.temps):
                 os.makedirs(opt.temps)
-            path = os.path.join(opt.temps, 'backdoor_image.png')
+            path = os.path.join(opt.temps, "backdoor_image.png")
             torchvision.utils.save_image(inputs_bd, path, normalize=True)
-        
 
         # Image for tensorboard
         if batch_idx == len(train_dl) - 2:
@@ -215,7 +213,7 @@ def eval(
 
             acc_clean = total_clean_correct * 100.0 / total_sample
             acc_bd = total_bd_correct * 100.0 / total_sample
-            
+
             # Evaluate cross
             if opt.cross_ratio:
                 inputs_cross = F.grid_sample(inputs, grid_temps2, align_corners=True)
@@ -314,7 +312,7 @@ def main():
     opt.ckpt_folder = os.path.join(opt.checkpoints, opt.dataset)
     opt.ckpt_path = os.path.join(opt.ckpt_folder, "{}_{}_morph.pth.tar".format(opt.dataset, mode))
     opt.log_dir = os.path.join(opt.ckpt_folder, "log_dir")
-    if(not os.path.exists(opt.log_dir)):
+    if not os.path.exists(opt.log_dir):
         os.makedirs(opt.log_dir)
 
     if opt.continue_training:
