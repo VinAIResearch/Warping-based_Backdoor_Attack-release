@@ -9,7 +9,6 @@ def get_arguments():
     parser.add_argument("--temps", type=str, default="./temps")
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument("--continue_training", action="store_true")
-    parser.add_argument("--saving_prefix", type=str, help="Folder in /checkpoints for saving ckpt")
 
     parser.add_argument("--dataset", type=str, default="cifar10")
     parser.add_argument("--attack_mode", type=str, default="all2one")
@@ -23,7 +22,7 @@ def get_arguments():
 
     parser.add_argument("--target_label", type=int, default=0)
     parser.add_argument("--pc", type=float, default=0.1)
-    parser.add_argument("--cross_ratio", type=float, default=1)
+    parser.add_argument("--cross_ratio", type=float, default=2) # rho_a = pc, rho_n = pc * cross_ratio
 
     parser.add_argument("--random_rotation", type=int, default=10)
     parser.add_argument("--random_crop", type=int, default=5)

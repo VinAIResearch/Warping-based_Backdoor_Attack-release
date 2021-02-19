@@ -9,7 +9,7 @@ import torch
 import torch.nn.functional as F
 import torchvision
 from classifier_models import PreActResNet18, ResNet18
-from networks.models import AE, Denormalizer, NetC_MNIST3, Normalizer
+from networks.models import Denormalizer, NetC_MNIST, Normalizer
 from torch import nn
 from torch.utils.tensorboard import SummaryWriter
 from torchvision.transforms import RandomErasing
@@ -27,7 +27,7 @@ def get_model(opt):
     if opt.dataset == "celeba":
         netC = ResNet18().to(opt.device)
     if opt.dataset == "mnist":
-        netC = NetC_MNIST3().to(opt.device)
+        netC = NetC_MNIST().to(opt.device)
 
     # Optimizer
     optimizerC = torch.optim.SGD(netC.parameters(), opt.lr_C, momentum=0.9, weight_decay=5e-4)
@@ -310,8 +310,8 @@ def main():
     netC, optimizerC, schedulerC = get_model(opt)
 
     # Load pretrained model
-    mode = opt.saving_prefix
-    opt.ckpt_folder = os.path.join(opt.checkpoints, "k_{}".format(opt.k), "{}_morph".format(mode), opt.dataset)
+    mode = opt.attack_mode
+    opt.ckpt_folder = os.path.join(opt.checkpoints, opt.dataset)
     opt.ckpt_path = os.path.join(opt.ckpt_folder, "{}_{}_morph.pth.tar".format(opt.dataset, mode))
     opt.log_dir = os.path.join(opt.ckpt_folder, "log_dir")
     if(not os.path.exists(opt.log_dir)):
