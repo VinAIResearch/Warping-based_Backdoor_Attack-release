@@ -71,19 +71,11 @@ def eval(
 
             # Evaluate Backdoor
             grid_temps = (identity_grid + opt.scale * noise_grid / opt.input_height) * opt.grid_rescale
-            if opt.clamp:
-                grid_temps = torch.clamp(grid_temps, -1, 1)
-            if opt.nearest > 0:
-                grid_temps = (grid_temps + 1) / 2 * (inputs.shape[2] - 1) * opt.nearest
-                grid_temps = torch.round(grid_temps) / ((inputs.shape[2] - 1) * opt.nearest) * 2 - 1
+            grid_temps = torch.clamp(grid_temps, -1, 1)
 
             ins = torch.rand(bs, opt.input_height, opt.input_height, 2).to(opt.device) * 2 - 1
             grid_temps2 = grid_temps.repeat(bs, 1, 1, 1) + ins / opt.input_height
-            if opt.clamp:
-                grid_temps2 = torch.clamp(grid_temps2, -1, 1)
-            if opt.nearest > 0:
-                grid_temps2 = (grid_temps2 + 1) / 2 * (inputs.shape[2] - 1) * opt.nearest
-                grid_temps2 = torch.round(grid_temps2) / ((inputs.shape[2] - 1) * opt.nearest) * 2 - 1
+            grid_temps2 = torch.clamp(grid_temps2, -1, 1)
 
             inputs_bd = F.grid_sample(inputs, grid_temps.repeat(bs, 1, 1, 1), align_corners=True)
             if opt.attack_mode == "all2one":
