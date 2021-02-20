@@ -12,10 +12,10 @@ from PIL import Image
 from torch.utils.tensorboard import SummaryWriter
 
 
-class ToNumpy():
+class ToNumpy:
     def __call__(self, x):
         x = np.array(x)
-        if(len(x.shape) == 2):
+        if len(x.shape) == 2:
             x = np.expand_dims(x, axis=2)
         return x
 
@@ -160,21 +160,29 @@ def get_dataloader(opt, train=True, pretensor_transform=False):
 
 
 def get_dataset(opt, train=True):
-    if(opt.dataset == 'gtsrb'):
-        dataset = GTSRB(opt, train, transforms=transforms.Compose([transforms.Resize((opt.input_height, opt.input_width)), ToNumpy()]))
-    elif(opt.dataset == 'mnist'):
+    if opt.dataset == "gtsrb":
+        dataset = GTSRB(
+            opt,
+            train,
+            transforms=transforms.Compose([transforms.Resize((opt.input_height, opt.input_width)), ToNumpy()]),
+        )
+    elif opt.dataset == "mnist":
         dataset = torchvision.datasets.MNIST(opt.data_root, train, transform=ToNumpy(), download=True)
-    elif(opt.dataset == 'cifar10'):
+    elif opt.dataset == "cifar10":
         dataset = torchvision.datasets.CIFAR10(opt.data_root, train, transform=ToNumpy(), download=True)
-    elif(opt.dataset == 'celeba'):
-        if(train):
-            split = 'train'
+    elif opt.dataset == "celeba":
+        if train:
+            split = "train"
         else:
-            split = 'test'
-        dataset = CelebA_attr(opt, split, transforms=transforms.Compose([transforms.Resize((opt.input_height, opt.input_width)), ToNumpy()]))
+            split = "test"
+        dataset = CelebA_attr(
+            opt,
+            split,
+            transforms=transforms.Compose([transforms.Resize((opt.input_height, opt.input_width)), ToNumpy()]),
+        )
     else:
-        raise Exception('Invalid dataset')
-    return dataset 
+        raise Exception("Invalid dataset")
+    return dataset
 
 
 def main():

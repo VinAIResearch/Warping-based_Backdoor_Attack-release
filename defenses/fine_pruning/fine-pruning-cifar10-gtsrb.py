@@ -56,7 +56,7 @@ def eval(netC, identity_grid, noise_grid, test_dl, opt):
         # Evaluating backdoor
         grid_temps = (identity_grid + opt.s * noise_grid / opt.input_height) * opt.grid_rescale
         grid_temps = torch.clamp(grid_temps, -1, 1)
-        
+
         inputs_bd = F.grid_sample(inputs, grid_temps.repeat(bs, 1, 1, 1), align_corners=True)
         targets_bd = torch.ones_like(targets) * opt.target_label
         preds_bd = netC(inputs_bd)
