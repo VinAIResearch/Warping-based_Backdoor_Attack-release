@@ -62,11 +62,21 @@ $ python fine-pruning-cifar10-gtsrb.py --dataset gtsrb --attack_mode <attackMode
 $ python fine-pruning-celeba.py --dataset celeba --attack_mode <attackMode> 
 ```
 * **Neural Cleanse**
-
 Run the command 
 ```bash
-$ 
+$ cd defenses/neural_cleanse
+$ python neural_cleanse.py --dataset <datasetName> --attack_mode <attackMode>
 ```
+The result will be printed on screen and logged in `results` folder. Note that NeuralCleanse is unstable, and the computed Anomaly Index may vary over different runs.
+
+* **STRIP**
+Run the command
+```bash
+$ cd defenses/STRIP
+$ python STRIP.py --dataset <datasetName> --attack_mode <attackMode>
+
+```
+The result will be printed on screen, and all entropy values are logged in `results` folder.
 
 ## Reference 
 If you find this repo useful for your research, please consider citing our paper
