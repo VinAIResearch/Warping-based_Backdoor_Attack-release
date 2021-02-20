@@ -1,0 +1,13 @@
+numpy==1.16.6
+opencv_contrib_python==3.4.2.17
+matplotlib==3.2.1
+Pillow==7.1.2
+torch==1.5.0
+torchvision==0.6.0
+tensorboard==1.14.0
+tensorboardX==2.0
+opencv-python==4.2.0.34
+urllib3==1.25.8
+scipy==1.4.1
+requests-unixsocket==0.1.5
+
