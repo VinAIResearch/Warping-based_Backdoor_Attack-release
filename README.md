@@ -30,7 +30,7 @@ where the parameters are the following:
 The trained checkpoints should be saved at the path `checkpoints\<datasetName>\<datasetName>_<attackMode>_morph.pth.tar`.
 
 ## Pretrained models
-We also provide pretrained checkpoints used in the original paper. The checkpoints could be found at [here](https://drive.google.com/file/d/1yuinSv5Ny_gZ2rU4-fjwAofvG0x_o1wk/view?usp=sharing). Just download and decompress it in this project's repo for evaluating. 
+We also provide pretrained checkpoints used in the original paper. The checkpoints could be found at [here](http://public.vinai.io/checkpoints.zip). Just download and decompress it in this project's repo for evaluating. 
 
 ## Evaluation 
 For evaluating trained models, run command
