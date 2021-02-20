@@ -57,7 +57,7 @@ def eval(netC, identity_grid, noise_grid, test_dl, opt):
         acc_clean = total_correct_clean * 100.0 / total_sample
 
         # Evaluating backdoor
-        grid_temps = (identity_grid + opt.scale * noise_grid / opt.input_height) * opt.grid_rescale
+        grid_temps = (identity_grid + opt.s * noise_grid / opt.input_height) * opt.grid_rescale
         grid_temps = torch.clamp(grid_temps, -1, 1)
         inputs_bd = F.grid_sample(inputs, grid_temps.repeat(bs, 1, 1, 1), align_corners=True)
         if opt.attack_mode == "all2one":

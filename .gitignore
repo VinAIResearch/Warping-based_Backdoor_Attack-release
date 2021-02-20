@@ -131,3 +131,5 @@ dmypy.json
 # Intrinsic folders and files
 checkpoints/
 scripts/
+.nfs0000000124b82a82000001b0
+*output.txt

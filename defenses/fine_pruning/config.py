@@ -21,10 +21,8 @@ def get_arguments():
     parser.add_argument("--attack_mode", type=str, default="all2one", help="all2one or all2all")
     parser.add_argument("--target_label", type=int, default=0)
     parser.add_argument("--outfile", type=str, default="./results.txt")
-    parser.add_argument("--S2", type=int, default=4)
-    parser.add_argument("--clamp", action="store_true")
-    parser.add_argument("--scale", type=float, default=0.5)
+    parser.add_argument("--k", type=int, default=4)
+    parser.add_argument("--s", type=float, default=0.5)
     parser.add_argument("--grid_rescale", type=float, default=1)
-    parser.add_argument("--nearest", type=int, default=0)
 
     return parser
