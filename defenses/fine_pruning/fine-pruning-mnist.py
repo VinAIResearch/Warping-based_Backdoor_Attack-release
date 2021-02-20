@@ -117,7 +117,7 @@ def main():
     # Pruning times - no-tuning after pruning a channel!!!
     acc_clean = []
     acc_bd = []
-    with open("mnist_results.txt", "w") as outs:
+    with open("mnist_{}_results.txt".format(opt.attack_mode), "w") as outs:
         for index in range(pruning_mask.shape[0]):
             net_pruned = copy.deepcopy(netC)
             num_pruned = index

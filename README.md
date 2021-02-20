@@ -9,19 +9,64 @@ This is an official implementation of the ICLR 2021 Paper "WaNet - Imperceptible
 
 ## Requirements
 - Install required python packages:
-```
+```bash
 $ python -m pip install -r requirements.py
 ```
 
 - Download and re-organize GTSRB dataset from its official website:
-```
+```bash
 $ bash gtsrb_download.sh
 ```
+
+## Training
+Run command 
+```bash
+$ python train.py --dataset <datasetName> --attack_mode <attackMode>
+```
+where the parameters are the following:
+- `<datasetName>`: `mnist` | `cifar10` | `gtsrb` | `celeba`.
+- `<attackMode>`: `all2one` (single-target attack) or `all2all` (multi-target attack)`
+
+The trained checkpoints should be saved at the path `checkpoints\<datasetName>\<datasetName>_<attackMode>_morph.pth.tar`.
 
 ## Pretrained models
 We also provide pretrained checkpoints used in the original paper. The checkpoints could be found at [here](https://drive.google.com/file/d/1yuinSv5Ny_gZ2rU4-fjwAofvG0x_o1wk/view?usp=sharing). Just download and decompress it in this project's repo for evaluating. 
 
 ## Evaluation 
+For evaluating trained models, run command
+```bash
+$ python eval.py --dataset <datasetName> --attack_mode <attackMode>
+```
+
+This command will print the model accuracies on three tests: clean, attack, noise test. The clean and attack accuracies should be the same as reported in our paper, while noise one maybe slightly different due to random nosie generating. 
+
+## Results
+| Dataset         | Clean test  | Attack test | Noise test         |
+|-----------------|-------------|-------------|--------------------|
+| MNIST           | 99.52       | 99.86       | 98.20              |
+| CIFAR-10        | 94.15       | 99.55       | 93.55              |
+| GTSRB           | 98.87       | 99.33       | 98.01              |
+| CelebA          | 78.99       | 99.33       | 76.74              |           
+
+## Defense experiments
+Along with training and evaluation code, we also provide code of defense methods conducted in the paper inside the folder `defenses`.
+
+* **Fine-pruning**
+We have separate code for different datasets due to network architecture differences. The results should be written in `<datasetName>_<attackMode>_output.txt`.
+
+```bash
+$ cd defenses/fine_pruning
+$ python fine-pruning-mnist.py --dataset mnist --attack_mode <attackMode> 
+$ python fine-pruning-cifar10-gtsrb.py --dataset cifar10 --attack_mode <attackMode> 
+$ python fine-pruning-cifar10-gtsrb.py --dataset gtsrb --attack_mode <attackMode> 
+$ python fine-pruning-celeba.py --dataset celeba --attack_mode <attackMode> 
+```
+* **Neural Cleanse**
+
+Run the command 
+```bash
+$ 
+```
 
 ## Reference 
 If you find this repo useful for your research, please consider citing our paper
