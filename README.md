@@ -9,10 +9,24 @@
 
 <img src="Teaser.png" width="800px"/>
 
+Wanet is a brand-new backdoor attack method that relies on distorting the global structure of images to craft backdoor samples, instead of patching or water-marking images as previous backdoor attack approaches. 
+
 This is an official implementation of the ICLR 2021 Paper "WaNet - Imperceptible Warping-based Backdoor Attack" in Pytorch. This repository includes:
 - Training and evaluation code.
 - Defense experiments used in the paper.
 - Pretrained checkpoints used in the paper. 
+
+If you find this repo useful for your research, please consider citing our paper
+```
+@inproceedings{
+nguyen2021wanet,
+title={WaNet - Imperceptible Warping-based Backdoor Attack},
+author={Tuan Anh Nguyen and Anh Tuan Tran},
+booktitle={International Conference on Learning Representations},
+year={2021},
+url={https://openreview.net/forum?id=eEn8KTtJOx}
+}
+```
 
 ## Requirements
 - Install required python packages:
@@ -84,19 +98,6 @@ $ python STRIP.py --dataset <datasetName> --attack_mode <attackMode>
 
 ```
 The result will be printed on screen, and all entropy values are logged in `results` folder.
-
-## Reference 
-If you find this repo useful for your research, please consider citing our paper
-```
-@inproceedings{
-nguyen2021wanet,
-title={WaNet - Imperceptible Warping-based Backdoor Attack},
-author={Tuan Anh Nguyen and Anh Tuan Tran},
-booktitle={International Conference on Learning Representations},
-year={2021},
-url={https://openreview.net/forum?id=eEn8KTtJOx}
-}
-```
 
 ## Contacts
 
