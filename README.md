@@ -1,3 +1,10 @@
+##### Table of contents
+1. [Introduction](#Wanet-Imperceptible-Warping-based-Backdoor-Attack)
+2. [Requirements](#Requirements)
+3. [Training](#Training)
+4. [Evaluation](#Evaluation)
+
+
 # WaNet - Imperceptible Warping-based Backdoor Attack 
 
 <img src="Teaser.png" width="800px"/>
