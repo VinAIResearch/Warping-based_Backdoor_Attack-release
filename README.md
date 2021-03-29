@@ -11,7 +11,7 @@
 
 Wanet is a brand-new backdoor attack method that relies on distorting the global structure of images to craft backdoor samples, instead of patching or water-marking images as previous backdoor attack approaches. 
 
-This is an official implementation of the ICLR 2021 Paper "WaNet - Imperceptible Warping-based Backdoor Attack" in Pytorch. This repository includes:
+This is an official implementation of the ICLR 2021 Paper **[WaNet - Imperceptible Warping-based Backdoor Attack](https://openreview.net/forum?id=eEn8KTtJOx)** in Pytorch. This repository includes:
 - Training and evaluation code.
 - Defense experiments used in the paper.
 - Pretrained checkpoints used in the paper. 
