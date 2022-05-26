@@ -80,7 +80,7 @@ def eval(
             if opt.attack_mode == "all2one":
                 targets_bd = torch.ones_like(targets) * opt.target_label
             if opt.attack_mode == "all2all":
-                targets_bd = torch.remainder(targets, opt.num_classes)
+                targets_bd = torch.remainder(targets + 1, opt.num_classes)
             preds_bd = netC(inputs_bd)
             total_bd_correct += torch.sum(torch.argmax(preds_bd, 1) == targets_bd)
 
