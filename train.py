@@ -80,7 +80,7 @@ def train(netC, optimizerC, schedulerC, train_dl, noise_grid, identity_grid, tf_
         if opt.attack_mode == "all2one":
             targets_bd = torch.ones_like(targets[:num_bd]) * opt.target_label
         if opt.attack_mode == "all2all":
-            targets_bd = torch.remainder(targets[:num_bd], opt.num_classes)
+            targets_bd = torch.remainder(targets[:num_bd] + 1, opt.num_classes)
 
         inputs_cross = F.grid_sample(inputs[num_bd : (num_bd + num_cross)], grid_temps2, align_corners=True)
 
@@ -207,7 +207,7 @@ def eval(
             if opt.attack_mode == "all2one":
                 targets_bd = torch.ones_like(targets) * opt.target_label
             if opt.attack_mode == "all2all":
-                targets_bd = torch.remainder(targets, opt.num_classes)
+                targets_bd = torch.remainder(targets + 1, opt.num_classes)
             preds_bd = netC(inputs_bd)
             total_bd_correct += torch.sum(torch.argmax(preds_bd, 1) == targets_bd)
 
